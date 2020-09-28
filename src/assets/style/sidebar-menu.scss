@@ -8,9 +8,10 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
+    border-right: 1px solid #eaecef;
 
     .sidebar-inner {
-        width: 260px;
+        width: 300px;
         padding: 35px 0px 60px 20px;
 
         .sidebar-link {
@@ -47,4 +48,13 @@
     & .menu-root {
         padding-left: 0;
     }
+}
+
+.icon-arrow-right-bold {
+    display: inline-block;
+    transition: 0.3s transform ease, 0.3s -webkit-transform ease;
+}
+
+.arrow-down {
+    transform: rotate(90deg);
 }
