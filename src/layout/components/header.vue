@@ -87,10 +87,10 @@ export default {
   width: 100%;
   top: 0;
   background-color: #fff;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
   transition: background-color 0.3s ease-in-out;
   padding: 10px 60px;
   z-index: 20;
+  box-shadow: 0 1px 5px rgba(0,0,0,.11);
 }
 
 @media screen and (max-width: 1000px) {

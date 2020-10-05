@@ -19,7 +19,7 @@ export default {
   created() {},
   mounted() {},
   watch: {},
-  methods: {},
+  methods: {}
 };
 </script>
 
@@ -29,6 +29,9 @@ export default {
   flex-direction: row;
   .home-main {
     flex: 1;
+    // box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
+    margin-left: 20px;
+    // background-color: #fff;
   }
 }
 </style>

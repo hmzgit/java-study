@@ -1,9 +1,11 @@
 <template>
-  <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
-    </transition>
-  </section>
+  <main>
+    <section class="app-main">
+      <transition name="fade-transform" mode="out-in">
+        <router-view :key="key" />
+      </transition>
+    </section>
+  </main>
 </template>
 
 <script>
@@ -12,27 +14,25 @@ export default {
   computed: {
     key() {
       return this.$route.path;
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app-main {
-  /*50 = navbar  */
-  min-height: calc(100vh - 50px);
   width: 100%;
-  padding: 20px;
   position: relative;
   overflow: hidden;
+  padding-bottom: 20px;
 }
+
 .fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>
 
 <style lang="scss">
-// fix css style bug in open el-dialog
 .el-popup-parent--hidden {
   .fixed-header {
     padding-right: 15px;
