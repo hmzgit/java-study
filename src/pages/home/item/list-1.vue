@@ -37,11 +37,11 @@
                 </div>
             </div>
             <div class="operation-bottom">
-                <operation></operation>
-                <prevnext></prevnext>
+                <operation />
+                <prevnext />
             </div>
         </div>
-        <article-comment></article-comment>
+        <article-comment />
     </div>
 </template>
 
