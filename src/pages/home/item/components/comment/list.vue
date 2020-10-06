@@ -81,51 +81,19 @@ export default {
   components: {
     EditDiv
   },
-  props: {},
+  props: {
+      list: {
+          type: Array,
+          default: []
+      }
+  },
   data() {
     return {
-      btnText: "回复",
-      list: [
-        {
-          id: 1,
-          head:
-            "https://mirror-gold-cdn.xitu.io/168e09bdb66bcf662a4?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1",
-          name: "fend",
-          content:
-            " 此女是加州大学伯克利分校的高材生，在湾区可以横着走。所以，从统计学意义上来讲，此人属于无效样本，应予以剔除。",
-          date: "2020 年 05 月 24 日 11:12",
-          like: 2,
-          childs: [
-            {
-              id: 2,
-              head:
-                "//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200",
-              name: "阿牛",
-              content: "网络喷子原型？",
-              date: "一天前",
-              like: 0,
-              at: "谋生",
-              isReply: false
-            },
-            {
-              id: 3,
-              head:
-                "https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!",
-              name: "谋生",
-              content: "这不是有手就行？",
-              date: "一周前",
-              like: 1,
-              isReply: false
-            }
-          ]
-        }
-      ]
+      btnText: "回复"
     };
   },
-  computed: {},
   created() {},
   mounted() {},
-  watch: {},
   methods: {
     // 评论按钮
     onSubmit(content) {
@@ -134,8 +102,8 @@ export default {
 
     // 显示回复框
     showReplyForm(item) {
-        item.isReply = !item.isReply;
-        item.placeholderText = `回复 ${item.name}:`
+      item.isReply = !item.isReply;
+      item.placeholderText = `回复 ${item.name}:`;
     }
   }
 };
