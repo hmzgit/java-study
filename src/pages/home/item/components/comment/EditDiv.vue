@@ -134,7 +134,7 @@ export default {
         box-sizing: border-box;
         width: 100%;
         min-height: 36px;
-        max-height: 130px;
+        max-height: 100px;
         border-radius: 6px;
         line-height: 24px;
         font-size: 16px;

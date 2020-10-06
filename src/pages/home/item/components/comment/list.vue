@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="reply-form" v-if="child.isReply">
-                                <edit-div @submit="onSubmit" :btnText="btnText" :placeholderText="placeholderText" />
+                                <edit-div @submit="onSubmit" :btnText="btnText" :placeholderText="child.placeholderText" />
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,6 @@ export default {
   props: {},
   data() {
     return {
-      placeholderText: "回复 阿牛:",
       btnText: "回复",
       list: [
         {
@@ -136,6 +135,7 @@ export default {
     // 显示回复框
     showReplyForm(item) {
         item.isReply = !item.isReply;
+        item.placeholderText = `回复 ${item.name}:`
     }
   }
 };
@@ -269,7 +269,7 @@ export default {
       position: relative;
       box-sizing: border-box;
       margin-top: 20px;
-      background-color: #f5f6f7;
+      background-color: #fafbfc;
       border-radius: 4px;
       padding: 0 30px;
 
