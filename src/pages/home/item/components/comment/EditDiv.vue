@@ -11,7 +11,7 @@
                         ref="comment"
                         contenteditable="plaintext-only"
                         spellcheck="false"
-                        placeholder="发表评论"
+                        :placeholder="placeholderText"
                         class="textarea comment-textarea"
                         :class="{ empty: !content }"
                     ></div>
@@ -24,7 +24,7 @@
                         class="comment-btn Button_button_3onsJ"
                         @click="submit"
                     >
-                        评论
+                        {{btnText}}
                     </div>
                 </div>
             </div>
@@ -34,7 +34,16 @@
 
 <script>
 export default {
-    props: {},
+    props: {
+        placeholderText: {
+            type: String,
+            default: '发表评论'
+        },
+        btnText: {
+            type: String,
+            default: '评论'
+        }
+    },
     data() {
         return {
             content: '',
@@ -116,7 +125,6 @@ export default {
         bottom: 1px;
         z-index: 10;
         width: 15px;
-        background: #fff;
         border-radius: 6px;
     }
 

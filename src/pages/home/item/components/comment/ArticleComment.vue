@@ -10,7 +10,7 @@
                     </span>
                 </div>
             </div>
-            <edit-div @submit="onSubmit" />
+            <edit-div @submit="onSubmit" :btnText="btnText" :placeholderText="placeholderText" />
             <list />
         </section>
     </div>
@@ -25,7 +25,10 @@ export default {
         list
     },
     data() {
-        return {};
+        return {
+            placeholderText: '发表评论',
+            btnText: '评论'
+        };
     },
     computed: {},
     created() {},
