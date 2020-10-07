@@ -76,175 +76,175 @@
 </template>
 
 <script>
-import EditDiv from "./EditDiv";
+import EditDiv from './EditDiv';
 export default {
-  components: {
-    EditDiv
-  },
-  props: {
-      list: {
-          type: Array,
-          default: []
-      }
-  },
-  data() {
-    return {
-      btnText: "回复"
-    };
-  },
-  created() {},
-  mounted() {},
-  methods: {
-    // 评论按钮
-    onSubmit(content) {
-      console.log(content);
+    components: {
+        EditDiv
     },
+    props: {
+        list: {
+            type: Array,
+            default: []
+        }
+    },
+    data() {
+        return {
+            btnText: '回复'
+        };
+    },
+    created() {},
+    mounted() {},
+    methods: {
+        // 评论按钮
+        onSubmit(content) {
+            console.log(content);
+        },
 
-    // 显示回复框
-    showReplyForm(item) {
-      item.isReply = !item.isReply;
-      item.placeholderText = `回复 ${item.name}:`;
+        // 显示回复框
+        showReplyForm(item) {
+            item.isReply = !item.isReply;
+            item.placeholderText = `回复 ${item.name}:`;
+        }
     }
-  }
 };
 </script>
 
 <style scoped lang="scss">
 .font-size-xs {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .font-size-sm {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .list {
-  margin-top: 20px;
+    margin-top: 20px;
 
-  .reply-item {
-    position: relative;
-    border-bottom: 0.5px solid #f0f1f3;
-    padding: 20px 0;
+    .reply-item {
+        position: relative;
+        border-bottom: 0.5px solid #f0f1f3;
+        padding: 20px 0;
 
-    & .reply-author {
-      margin-top: 7px !important;
+        & .reply-author {
+            margin-top: 7px !important;
+        }
+
+        &:last-child {
+            border: none;
+        }
     }
 
-    &:last-child {
-      border: none;
-    }
-  }
+    .comment-item {
+        position: relative;
+        padding: 20px 0;
 
-  .comment-item {
-    position: relative;
-    padding: 20px 0;
+        .wrap {
+            display: flex;
 
-    .wrap {
-      display: flex;
+            .left {
+                margin-right: 15px;
 
-      .left {
-        margin-right: 15px;
+                .comment-avatar {
+                    .avatar,
+                    .avatar_reply {
+                        width: 40px;
+                        height: 40px;
+                        display: block;
+                        background: #d0d4d7;
+                        border-radius: 100%;
+                    }
 
-        .comment-avatar {
-          .avatar,
-          .avatar_reply {
-            width: 40px;
-            height: 40px;
-            display: block;
-            background: #d0d4d7;
-            border-radius: 100%;
-          }
-
-          .avatar_reply {
-            width: 30px;
-            height: 30px;
-          }
-        }
-      }
-
-      .right {
-        flex: 1;
-        .reply-author {
-          line-height: 16px;
-          margin-top: 12px;
-
-          .reply-user {
-            font-weight: bold;
-            color: #303030;
-          }
-
-          .reply-label {
-            padding: 0 8px;
-            font-weight: 300;
-            color: #303030;
-          }
-        }
-
-        .reply-content {
-          margin: 10px 0;
-          line-height: 24px;
-          font-weight: 400;
-          word-break: break-word;
-          color: #303030;
-        }
-
-        .reply-operation {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: relative;
-          width: 100%;
-          margin-top: 10px;
-          line-height: 1;
-          font-size: 14px;
-          font-weight: 400;
-          color: #141414;
-
-          .date {
-            font-size: 14px;
-            font-weight: 400;
-            color: #828a92;
-          }
-
-          .reply-action {
-            .like-btn,
-            .reply-btn {
-              color: #828a92;
-              cursor: pointer;
-              user-select: none;
+                    .avatar_reply {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
             }
 
-            .reply-btn {
-              margin-left: 25px;
-            }
+            .right {
+                flex: 1;
+                .reply-author {
+                    line-height: 16px;
+                    margin-top: 12px;
 
-            .iconfont {
-              font-size: 16px;
-              color: #b4b9be;
-              user-select: none;
-              margin-right: 5px;
+                    .reply-user {
+                        font-weight: bold;
+                        color: #303030;
+                    }
 
-              &:hover {
-                color: #686e75;
-              }
+                    .reply-label {
+                        padding: 0 8px;
+                        font-weight: 300;
+                        color: #303030;
+                    }
+                }
+
+                .reply-content {
+                    margin: 10px 0;
+                    line-height: 24px;
+                    font-weight: 400;
+                    word-break: break-word;
+                    color: #303030;
+                }
+
+                .reply-operation {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    position: relative;
+                    width: 100%;
+                    margin-top: 10px;
+                    line-height: 1;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #141414;
+
+                    .date {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #828a92;
+                    }
+
+                    .reply-action {
+                        .like-btn,
+                        .reply-btn {
+                            color: #828a92;
+                            cursor: pointer;
+                            user-select: none;
+                        }
+
+                        .reply-btn {
+                            margin-left: 25px;
+                        }
+
+                        .iconfont {
+                            font-size: 16px;
+                            color: #b4b9be;
+                            user-select: none;
+                            margin-right: 5px;
+
+                            &:hover {
+                                color: #686e75;
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
-    }
 
-    .reply-list {
-      position: relative;
-      box-sizing: border-box;
-      margin-top: 20px;
-      background-color: #fafbfc;
-      border-radius: 4px;
-      padding: 0 30px;
+        .reply-list {
+            position: relative;
+            box-sizing: border-box;
+            margin-top: 20px;
+            background-color: #fafbfc;
+            border-radius: 4px;
+            padding: 0 30px;
 
-      .reply-form {
-        margin-top: 20px;
-      }
+            .reply-form {
+                margin-top: 20px;
+            }
+        }
     }
-  }
 }
 </style>

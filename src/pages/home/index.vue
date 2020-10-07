@@ -1,37 +1,34 @@
 <template>
-  <div class="home-wrap">
-    <Sidebar></Sidebar>
-    <div class="home-main">
-      <router-view></router-view>
+    <div class="home-wrap">
+        <Sidebar />
+        <div class="home-main">
+            <router-view />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import Sidebar from "./components/SidebarMenu";
+import Sidebar from './components/SidebarMenu';
 export default {
-  components: { Sidebar },
-  props: {},
-  data() {
-    return {};
-  },
-  computed: {},
-  created() {},
-  mounted() {},
-  watch: {},
-  methods: {}
+    components: { Sidebar },
+    data() {
+        return {};
+    },
+    computed: {},
+    created() {},
+    mounted() {},
+    watch: {},
+    methods: {}
 };
 </script>
 
 <style scoped lang="scss">
 .home-wrap {
-  display: flex;
-  flex-direction: row;
-  .home-main {
-    flex: 1;
-    // box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
-    margin-left: 20px;
-    // background-color: #fff;
-  }
+    display: flex;
+    flex-direction: row;
+    .home-main {
+        flex: 1;
+        margin-left: 20px;
+    }
 }
 </style>

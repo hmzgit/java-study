@@ -1,0 +1,241 @@
+<template>
+    <aside class="aside-left">
+        <div class="search-block flex-align">
+            <search />
+        </div>
+        <div class="download-list">
+            <ul class="list-ul">
+                <li class="download-item flex" v-for="(item, index) in list" :key="item.id">
+                    <div class="left">
+                        <div class="avatar-wrap">
+                            <img :src="item.head" alt="用户头像" class="avatar" />
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="title">
+                            <span class="tag" :class="'tag' + (index + 1)" v-if="index + 1 <= 3">
+                                <i class="iconfont icon-redu"></i>
+                                top{{ index + 1 }}
+                            </span>
+                            <span>【{{ item.id }}】{{ item.title }}</span>
+                        </div>
+                        <div class="operation flex-s-b">
+                            <div class="more-column flex-align">
+                                <span class="more flex-align">
+                                    <i class="iconfont icon-11-04"></i>
+                                    <em>{{ item.downloadNum }}</em>
+                                </span>
+                                <span class="line">|</span>
+                                <span class="more flex-align">
+                                    <i class="iconfont icon-zu-"></i>
+                                    <em>{{ item.integral }}</em>
+                                </span>
+                                <span class="line">|</span>
+                                <div class="date">{{ item.date }}</div>
+                            </div>
+                            <div class="btn-column">
+                                <div class="btn flex-align-center">
+                                    <i class="iconfont icon-11-04"></i>
+                                    下载
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</template>
+
+<script>
+import search from './search';
+export default {
+    components: {
+        search
+    },
+    props: {},
+    data() {
+        return {
+            list: [
+                {
+                    id: 'AA001',
+                    head: 'https://mirror-gold-cdn.xitu.io/168e09bdb66bcf662a4?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1',
+                    title: 'SpringBoot+ ElasticSearch实现全文搜索功能-源码',
+                    date: '1小时前',
+                    downloadNum: 89,
+                    integral: 4
+                },
+                {
+                    id: 'AC783',
+                    head: 'https://static.woshipm.com/WX_U_202007_20200716143737_5864.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                    title: 'LeetCode刷题实战60道-源码',
+                    date: '15小时前',
+                    downloadNum: 78,
+                    integral: 3
+                },
+                {
+                    id: 'GA045',
+                    head: 'https://static.woshipm.com/TTW_USER_202004_20200424094658_6148.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                    title: 'SpringBoot+Vue前后端分离实现邮件定时发送功能-全套视频',
+                    date: '一天前',
+                    downloadNum: 67,
+                    integral: 10
+                },
+                {
+                    id: 'HA883',
+                    head: 'https://static.woshipm.com/TTW_USER_R201706_20170602174604_6218.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                    title: 'Springboot+Vue前后端分离实现Excle文件导入并在前端页面回显功能-源码',
+                    date: '一周前',
+                    downloadNum: 40,
+                    integral: 8
+                }
+            ]
+        };
+    },
+    computed: {},
+    created() {},
+    mounted() {},
+    watch: {},
+    methods: {}
+};
+</script>
+
+<style scoped lang="scss">
+.aside-left {
+    width: 680px;
+    min-height: 400px;
+    transition: ease-in-out 0.5s;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
+
+    .search-block {
+        height: 70px;
+    }
+
+    .download-list {
+        border-radius: 4px 4px 0px 0px;
+        box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
+
+        .download-item {
+            border-top: 1px solid #f2f2f2;
+            padding: 30px;
+            position: relative;
+
+            &:hover {
+                background-color: #fafbfc;
+            }
+
+            .left {
+                margin-right: 15px;
+
+                .avatar-wrap {
+                    .avatar {
+                        width: 40px;
+                        height: 40px;
+                        display: block;
+                        background: #d0d4d7;
+                        border-radius: 100%;
+                    }
+                }
+            }
+
+            .right {
+                flex: 1;
+
+                .title {
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #303030;
+
+                    .tag {
+                        width: 55px;
+                        height: 20px;
+                        border-radius: 4px;
+                        color: #fff;
+                        font-size: 12px;
+                        line-height: 18px;
+                        display: inline-block;
+                        text-align: center;
+                    }
+
+                    .tag1 {
+                        background: linear-gradient(90deg, rgb(255, 0, 0), #ff5750);
+                    }
+
+                    .tag2 {
+                        background: linear-gradient(90deg, rgb(255, 89, 0), #ff5750);
+                    }
+
+                    .tag3 {
+                        background: linear-gradient(90deg, rgb(255, 162, 0), #ff5750);
+                    }
+                }
+
+                .operation {
+                    position: relative;
+                    width: 100%;
+                    margin-top: 20px;
+                    line-height: 1;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #141414;
+
+                    .date {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #999;
+                    }
+
+                    .more-column {
+                        .more {
+                            color: #999;
+                            cursor: pointer;
+                            user-select: none;
+                        }
+
+                        .line {
+                            margin: 0 8px;
+                            font-size: 12px;
+                            color: #999;
+                        }
+
+                        .iconfont {
+                            font-size: 16px;
+                            user-select: none;
+                            margin-right: 5px;
+                        }
+
+                        .icon-11-04 {
+                            margin-top: 1px;
+                        }
+
+                        .icon-zu-,
+                        .icon-11-04 {
+                            color: rgb(74, 144, 226);
+                        }
+                    }
+
+                    .btn-column {
+                        .btn {
+                            width: 70px;
+                            height: 30px;
+                            background-color: #3d7feb;
+                            color: #fff;
+                            font-size: 14px;
+                            border-radius: 4px;
+                            cursor: pointer;
+
+                            .icon-11-04 {
+                                font-size: 16px;
+                                color: #fff;
+                                margin: 2px 3px 0 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+</style>

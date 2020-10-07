@@ -2,7 +2,24 @@
 @import "./reset.scss";
 @import "common";
 
+.flex {
+    display: flex;
+}
+
 .flex-align {
     display: flex;
+    align-items: center;
+}
+
+.flex-align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.flex-s-b {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }

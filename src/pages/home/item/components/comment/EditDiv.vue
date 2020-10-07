@@ -17,14 +17,8 @@
                     ></div>
                 </div>
                 <div class="comment-operation">
-                    <div
-                        :disabled="!content"
-                        pl-button
-                        plbtn-color="blue"
-                        class="comment-btn Button_button_3onsJ"
-                        @click="submit"
-                    >
-                        {{btnText}}
+                    <div :disabled="!content" pl-button plbtn-color="blue" class="comment-btn Button_button_3onsJ" @click="submit">
+                        {{ btnText }}
                     </div>
                 </div>
             </div>

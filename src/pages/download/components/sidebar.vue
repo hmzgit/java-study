@@ -1,15 +1,10 @@
 <template>
-    <div class="">
-        <list />
-    </div>
+    <div class="">download</div>
 </template>
 
 <script>
-import list from './components/list';
 export default {
-    components: {
-        list
-    },
+    components: {},
     props: {},
     data() {
         return {};
