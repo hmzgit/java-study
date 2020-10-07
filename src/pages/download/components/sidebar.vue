@@ -7,7 +7,7 @@
                     <em>上传资料</em>
                 </span>
                 <span>
-                    <i class="iconfont icon-wenhao1"></i>
+                    <i class="iconfont icon-wenhao"></i>
                 </span>
             </div>
             <div class="hot-m">
@@ -66,8 +66,8 @@ export default {
         margin-right: 10px;
       }
 
-      .icon-wenhao1 {
-        font-size: 14px;
+      .icon-wenhao {
+        font-size: 18px;
         color: #999;
         margin-left: 5px;
         cursor: pointer;

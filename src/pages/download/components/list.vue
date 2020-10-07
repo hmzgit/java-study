@@ -21,12 +21,12 @@
                         </div>
                         <div class="operation flex-s-b">
                             <div class="more-column flex-align">
-                                <span class="more flex-align">
+                                <span class="more font-v-a">
                                     <i class="iconfont icon-11-04"></i>
                                     <em>{{ item.downloadNum }}</em>
                                 </span>
                                 <span class="line">|</span>
-                                <span class="more flex-align">
+                                <span class="more font-v-a">
                                     <i class="iconfont icon-zu-"></i>
                                     <em>{{ item.integral }}</em>
                                 </span>
@@ -215,7 +215,7 @@ export default {
                             margin-right: 5px;
                         }
 
-                        .icon-11-04 {
+                        .icon-xiazai {
                             margin-top: 1px;
                         }
 
