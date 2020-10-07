@@ -14,8 +14,8 @@
                     <div class="right">
                         <div class="title">
                             <span class="tag" :class="'tag' + (index + 1)" v-if="index + 1 <= 3">
-                                <i class="iconfont icon-redu"></i>
-                                top{{ index + 1 }}
+                                <i class="iconfont icon-redu1"></i>
+                                <!-- <b>top{{ index + 1 }}</b> -->
                             </span>
                             <span>【{{ item.id }}】{{ item.title }}</span>
                         </div>
@@ -149,14 +149,23 @@ export default {
                     color: #303030;
 
                     .tag {
-                        width: 55px;
+                        width: 30px;
                         height: 20px;
                         border-radius: 4px;
                         color: #fff;
                         font-size: 12px;
-                        line-height: 18px;
+                        line-height: 20px;
                         display: inline-block;
                         text-align: center;
+
+                        // b {
+                        //     line-height: 1;
+                        //     margin-top: -1px;
+                        // }
+
+                        .icon-redu1 {
+                            font-size: 14px;
+                        }
                     }
 
                     .tag1 {
@@ -220,7 +229,7 @@ export default {
                         .btn {
                             width: 70px;
                             height: 30px;
-                            background-color: #3d7feb;
+                            background-color: rgb(74, 144, 226);
                             color: #fff;
                             font-size: 14px;
                             border-radius: 4px;

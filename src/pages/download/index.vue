@@ -1,14 +1,17 @@
 <template>
-    <div class="">
+    <div class="mian">
         <list />
+        <sidebar />
     </div>
 </template>
 
 <script>
 import list from './components/list';
+import sidebar from './components/sidebar';
 export default {
     components: {
-        list
+        list,
+        sidebar
     },
     props: {},
     data() {
@@ -22,4 +25,9 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+    .mian {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
