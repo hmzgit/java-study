@@ -7,7 +7,7 @@
                     <em>上传资料</em>
                 </span>
                 <span>
-                    <i class="iconfont icon-wenhao"></i>
+                    <i @click="handleAgreement" class="iconfont icon-wenhao"></i>
                 </span>
             </div>
             <div class="hot-m">
@@ -39,136 +39,155 @@
                 </div>
             </div>
         </div>
+        <agreement-dialog v-if="dialogAgreementVisible" @close="handleClose" />
     </aside>
 </template>
 
 <script>
+import { disableScroll, openScroll } from '@/utils';
+import AgreementDialog from './AgreementDialog';
 export default {
-    components: {},
-    props: {},
-    data() {
-        return {};
+  components: {
+    AgreementDialog
+  },
+  props: {},
+  data() {
+    return {
+      dialogAgreementVisible: false
+    };
+  },
+  computed: {},
+  created() {},
+  mounted() {},
+  watch: {},
+  methods: {
+    // 上传规则
+    handleAgreement() {
+      this.dialogAgreementVisible = true;
+      disableScroll();
     },
-    computed: {},
-    created() {},
-    mounted() {},
-    watch: {},
-    methods: {}
+
+    // 关闭
+    handleClose() {
+      this.dialogAgreementVisible = false;
+      openScroll();
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .aside-right {
-    width: 300px;
-    margin-left: 20px;
+  width: 300px;
+  margin-left: 20px;
 
-    .hot-block {
-        background-color: #fff;
-        margin-bottom: 20px;
-        box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
-        border-radius: 4px;
+  .hot-block {
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
+    border-radius: 4px;
 
-        .hot-t {
-            height: 50px;
-            line-height: 50px;
-            padding: 0 25px;
-            font-size: 18px;
-            color: #333;
-            font-weight: bold;
-            border-bottom: 1px solid #f2f2f2;
+    .hot-t {
+      height: 50px;
+      line-height: 50px;
+      padding: 0 25px;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+      border-bottom: 1px solid #f2f2f2;
 
-            .icon-shangchuan {
-                font-size: 18px;
-                color: rgb(74, 144, 226);
-                margin-right: 10px;
-            }
+      .icon-shangchuan {
+        font-size: 16px;
+        color: rgb(74, 144, 226);
+        margin-right: 10px;
+      }
 
-            .icon-wenhao {
-                font-size: 18px;
-                color: #999;
-                margin-left: 5px;
-                cursor: pointer;
-            }
-        }
-
-        .hot-m {
-            padding: 25px;
-            border-bottom: 1px solid #f2f2f2;
-
-            .wrap {
-                &.textarea {
-                    align-items: flex-start;
-                    margin-top: 20px;
-                }
-
-                .label {
-                    margin-right: 10px;
-                    font-size: 14px;
-                    color: #333;
-                }
-
-                .data-name,
-                .share-address {
-                    width: 180px;
-                    font-size: 14px;
-                    color: #333;
-                    border: 1px solid #eee;
-                    border-radius: 4px;
-                    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-                    &:focus {
-                        border: 1px solid rgb(74, 144, 226);
-                    }
-                }
-
-                .data-name {
-                    height: 30px;
-                    line-height: 30px;
-                    padding: 2px 15px 0 15px;
-                }
-
-                .share-address {
-                    height: 80px;
-                    padding: 5px 15px;
-                    font-family: '微软雅黑';
-                    outline: none;
-                    resize: none;
-                }
-            }
-
-            .customer {
-                .img-wrap {
-                    width: 100%;
-                    margin-bottom: 20px;
-
-                    img {
-                        width: 100%;
-                        border: 1px solid #fff;
-                        display: block;
-                    }
-                }
-
-                .tips {
-                    color: #666;
-                    font-size: 12px;
-                    text-align: justify;
-
-                    .top {
-                        margin-bottom: 15px;
-                    }
-                }
-            }
-        }
-
-        .hot-b {
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            font-size: 16px;
-            color: #446586;
-            cursor: pointer;
-            user-select: none;
-        }
+      .icon-wenhao {
+        font-size: 16px;
+        color: #999;
+        margin-left: 5px;
+        cursor: pointer;
+      }
     }
+
+    .hot-m {
+      padding: 25px;
+      border-bottom: 1px solid #f2f2f2;
+
+      .wrap {
+        &.textarea {
+          align-items: flex-start;
+          margin-top: 20px;
+        }
+
+        .label {
+          margin-right: 10px;
+          font-size: 14px;
+          color: #333;
+        }
+
+        .data-name,
+        .share-address {
+          width: 180px;
+          font-size: 12px;
+          color: #333;
+          border: 1px solid #eee;
+          border-radius: 4px;
+          transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+          &:focus {
+            border: 1px solid rgb(74, 144, 226);
+          }
+        }
+
+        .data-name {
+          height: 30px;
+          line-height: 30px;
+          padding: 0 10px 0 10px;
+        }
+
+        .share-address {
+          height: 100px;
+          padding: 5px 10px;
+          font-family: '微软雅黑';
+          outline: none;
+          resize: none;
+        }
+      }
+
+      .customer {
+        .img-wrap {
+          width: 100%;
+          margin-bottom: 20px;
+
+          img {
+            width: 100%;
+            border: 1px solid #fff;
+            display: block;
+          }
+        }
+
+        .tips {
+          color: #666;
+          font-size: 12px;
+          text-align: justify;
+
+          .top {
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+
+    .hot-b {
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 16px;
+      color: #446586;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
 }
 </style>
