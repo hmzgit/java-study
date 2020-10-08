@@ -15,7 +15,6 @@
                         <div class="title">
                             <span class="tag" :class="'tag' + (index + 1)" v-if="index + 1 <= 3">
                                 <i class="iconfont icon-redu1"></i>
-                                <!-- <b>top{{ index + 1 }}</b> -->
                             </span>
                             <span>【{{ item.id }}】{{ item.title }}</span>
                         </div>
@@ -44,14 +43,17 @@
                 </li>
             </ul>
         </div>
+        <modal />
     </aside>
 </template>
 
 <script>
+import modal from '@/components/dialog';
 import search from './search';
 export default {
     components: {
-        search
+        search,
+        modal
     },
     props: {},
     data() {
@@ -157,11 +159,6 @@ export default {
                         line-height: 20px;
                         display: inline-block;
                         text-align: center;
-
-                        // b {
-                        //     line-height: 1;
-                        //     margin-top: -1px;
-                        // }
 
                         .icon-redu1 {
                             font-size: 14px;

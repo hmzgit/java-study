@@ -1,6 +1,6 @@
 // @import "reset";
-@import "./reset.scss";
-@import "common";
+@import './reset.scss';
+@import 'common';
 
 .flex {
     display: flex;
@@ -22,9 +22,15 @@
     vertical-align: middle;
 }
 
-
 .flex-s-b {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: '';
+    display: block;
+    clear: both;
 }
