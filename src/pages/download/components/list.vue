@@ -68,7 +68,7 @@ export default {
                     date: '1小时前',
                     downloadNum: 89,
                     integral: 4,
-                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca--来自百度网盘超级会员V5的分享'
+                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca --来自百度网盘超级会员V5的分享'
                 },
                 {
                     id: 'AC783',
@@ -77,7 +77,7 @@ export default {
                     date: '15小时前',
                     downloadNum: 78,
                     integral: 3,
-                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca--来自百度网盘超级会员V5的分享'
+                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1uaSy5GUUwJfudH63-vVRIA 提取码：15PT --来自百度网盘超级会员V5的分享'
                 },
                 {
                     id: 'GA045',
@@ -86,7 +86,7 @@ export default {
                     date: '一天前',
                     downloadNum: 67,
                     integral: 10,
-                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca--来自百度网盘超级会员V5的分享'
+                    content: '链接：https://pan.baidu.com/s/1FUQctOm7_jWPoVituGnxvg 提取码：xj21 复制这段内容后打开百度网盘手机App，操作更方便哦'
                 },
                 {
                     id: 'HA883',
@@ -95,7 +95,7 @@ export default {
                     date: '一周前',
                     downloadNum: 40,
                     integral: 8,
-                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca--来自百度网盘超级会员V5的分享'
+                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1K_HmdnsUofe_TnYFpFNdgA 提取码：6098 --来自百度网盘超级会员V5的分享'
                 }
             ],
             index: '' // 当前索引
@@ -124,8 +124,9 @@ export default {
 
         // 提取提取码
         handleCode(item) {
-            let pwd = item.content.match(/密码: (\S*)--/);
-            let code = item.content.match(/提取码：(\S*) 复制/);
+            let pwd = item.content.match(/密码: (\S*) --/);
+            let code = item.content.match(/提取码：(\S*) --/);
+            let code1 = item.content.match(/提取码：(\S*) 复制/);
             // 密码
             if (pwd && pwd.length) {
                 return pwd[1];
@@ -133,6 +134,10 @@ export default {
             // 提取码
             if (code && code.length) {
                 return code[1];
+            }
+            // 提取码1
+            if (code1 && code1.length) {
+                return code1[1];
             }
         },
 
@@ -149,6 +154,7 @@ export default {
         handleConfirm(item) {
             console.log(item);
             setTimeout(() => {
+                this.dialogInquiryVisible = false;
                 window.open(item.link, '_blank');
             }, 1000);
         },
