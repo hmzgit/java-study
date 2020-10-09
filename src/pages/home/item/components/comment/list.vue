@@ -15,13 +15,14 @@
                         <span>{{ item.content }}</span>
                     </div>
                     <div class="reply-operation">
+                        <!-- 样式待优化 -->
                         <div class="date">{{ item.date }}</div>
                         <div class="reply-action flex-align">
-                            <span class="like-btn flex-align">
+                            <span class="like-btn font-v-a">
                                 <i class="iconfont icon-dianzan1"></i>
                                 <em>{{ item.like }}</em>
                             </span>
-                            <span class="reply-btn flex-align">
+                            <span class="reply-btn font-v-a">
                                 <i class="iconfont icon-huifu1"></i>
                                 <em>回复</em>
                             </span>
@@ -215,7 +216,7 @@ export default {
                         }
 
                         .reply-btn {
-                            margin-left: 25px;
+                            margin-left: 12px;
                         }
 
                         .iconfont {
