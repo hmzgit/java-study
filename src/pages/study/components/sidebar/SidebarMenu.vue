@@ -177,6 +177,7 @@ export default {
 
         .sidebar-link {
             color: #4f5959;
+            font-size: 16px;
         }
 
         .sidebar-link.current {
