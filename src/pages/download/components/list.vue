@@ -96,6 +96,15 @@ export default {
                     downloadNum: 40,
                     integral: 8,
                     content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1K_HmdnsUofe_TnYFpFNdgA 提取码：6098 --来自百度网盘超级会员V5的分享'
+                },
+                {
+                    id: 'Y0089',
+                    head: 'https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                    title: '前端开发核心知识进阶',
+                    date: '2020-09-22 22:00',
+                    downloadNum: 16,
+                    integral: 9,
+                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接:https://pan.baidu.com/s/1a9iL8PTDft8qs6iBm3kZZg 提取码:oa64'
                 }
             ],
             index: '' // 当前索引
@@ -127,6 +136,7 @@ export default {
             let pwd = item.content.match(/密码: (\S*) --/);
             let code = item.content.match(/提取码：(\S*) --/);
             let code1 = item.content.match(/提取码：(\S*) 复制/);
+            let code2 = item.content.match(/提取码:(\S*)/);
             // 密码
             if (pwd && pwd.length) {
                 return pwd[1];
@@ -138,6 +148,10 @@ export default {
             // 提取码1
             if (code1 && code1.length) {
                 return code1[1];
+            }
+            // 提取码2
+            if (code2 && code2.length) {
+                return code2[1];
             }
         },
 
@@ -297,6 +311,10 @@ export default {
                             font-size: 14px;
                             border-radius: 4px;
                             cursor: pointer;
+
+                            &:hover {
+                                opacity: 0.9;
+                            }
 
                             .icon-11-04 {
                                 font-size: 16px;

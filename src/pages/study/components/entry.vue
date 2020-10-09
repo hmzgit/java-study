@@ -45,9 +45,9 @@
 </template>
 
 <script>
-import operation from './components/operation';
-import prevnext from './components/prevnext';
-import ArticleComment from './components/comment/ArticleComment';
+import operation from './operation';
+import prevnext from './prevnext';
+import ArticleComment from './comment/ArticleComment';
 export default {
     components: {
         operation,
