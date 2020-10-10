@@ -1,21 +1,33 @@
 <template>
-  <div class="">comunication</div>
+    <div class="mian">
+        <list />
+        <sidebar />
+    </div>
 </template>
 
 <script>
+import list from './components/list';
+import sidebar from './components/sidebar';
 export default {
-  components: {},
-  props: {},
-  data() {
-    return {};
-  },
-  computed: {},
-  created() {},
-  mounted() {},
-  watch: {},
-  methods: {},
+    components: {
+        list,
+        sidebar
+    },
+    props: {},
+    data() {
+        return {};
+    },
+    computed: {},
+    created() {},
+    mounted() {},
+    watch: {},
+    methods: {}
 };
 </script>
 
 <style scoped lang="scss">
+.mian {
+    display: flex;
+    justify-content: space-between;
+}
 </style>

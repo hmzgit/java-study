@@ -37,13 +37,13 @@ export default new Router({
                     path: '/download',
                     name: 'download',
                     component: () => import('@/pages/download/index'),
-                    meta: { title: '首页', icon: 'dashboard' }
+                    meta: { title: '资料下载', icon: 'dashboard' }
                 },
                 {
                     path: '/comunication',
                     name: 'comunication',
                     component: () => import('@/pages/comunication/index'),
-                    meta: { title: '首页', icon: 'dashboard' }
+                    meta: { title: '学习圈子', icon: 'dashboard' }
                 },
                 {
                     path: '/feedback',
