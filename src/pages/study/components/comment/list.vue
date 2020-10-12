@@ -238,9 +238,9 @@ export default {
             position: relative;
             box-sizing: border-box;
             margin-top: 20px;
-            background-color: #fafbfc;
+            background-color: rgba(0, 0, 0, 0.02);
             border-radius: 4px;
-            padding: 0 30px;
+            padding: 0 20px;
 
             .reply-form {
                 margin-top: 20px;
