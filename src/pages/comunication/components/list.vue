@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="reply-form">
-                            <edit-div @submit="onSubmit" :btnText="btnText" placeholderText="发表回答" />
+                            <edit-div @submit="onSubmit"  v-model="value"  :maxlength="200" :btnText="btnText" placeholderText="讲两句呗..." />
                         </div>
                         <div class="reply-list">
                             <div class="reply-item flex" v-for="child in item.childs" :key="child.id">
@@ -90,286 +90,291 @@
 import EditDiv from './EditDiv';
 import { disableScroll, openScroll } from '@/utils';
 export default {
-    components: {
-        EditDiv
-    },
-    props: {},
-    data() {
-        return {
-            btnText: '回复',
-            dialogInquiryVisible: false,
-            list: [
-                {
-                    id: 'AA001',
-                    head: 'https://mirror-gold-cdn.xitu.io/168e09bdb66bcf662a4?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1',
-                    title: '',
-                    date: '1小时前',
-                    downloadNum: 89,
-                    integral: 4,
-                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca --来自百度网盘超级会员V5的分享',
-                    childs: [
-                        {
-                            id: 2,
-                            head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
-                            name: '阿牛',
-                            content: '网络喷子原型？',
-                            date: '一天前',
-                            like: 0,
-                            at: '谋生',
-                            isReply: false
-                        },
-                        {
-                            id: 3,
-                            head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                            name: '谋生',
-                            content: '这不是有手就行？',
-                            date: '一周前',
-                            like: 1,
-                            isReply: false
-                        }
-                    ]
-                },
-                {
-                    id: 'HA883',
-                    head: 'https://static.woshipm.com/TTW_USER_R201706_20170602174604_6218.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                    title: 'Springboot+Vue前后端分离实现Excle文件导入并在前端页面回显功能-源码',
-                    date: '一周前',
-                    downloadNum: 40,
-                    integral: 8,
-                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1K_HmdnsUofe_TnYFpFNdgA 提取码：6098 --来自百度网盘超级会员V5的分享',
-                    childs: [
-                        {
-                            id: 2,
-                            head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
-                            name: '阿牛',
-                            content: '网络喷子原型？',
-                            date: '一天前',
-                            like: 0,
-                            at: '谋生',
-                            isReply: false
-                        },
-                        {
-                            id: 3,
-                            head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                            name: '谋生',
-                            content: '这不是有手就行？',
-                            date: '一周前',
-                            like: 1,
-                            isReply: false
-                        }
-                    ]
-                },
-                {
-                    id: 'Y0089',
-                    head: 'https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                    title: '前端开发核心知识进阶',
-                    date: '2020-09-22 22:00',
-                    downloadNum: 16,
-                    integral: 9,
-                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接:https://pan.baidu.com/s/1a9iL8PTDft8qs6iBm3kZZg 提取码:oa64',
-                    childs: [
-                        {
-                            id: 2,
-                            head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
-                            name: '阿牛',
-                            content: '网络喷子原型？',
-                            date: '一天前',
-                            like: 0,
-                            at: '谋生',
-                            isReply: false
-                        },
-                        {
-                            id: 3,
-                            head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                            name: '谋生',
-                            content: '这不是有手就行？',
-                            date: '一周前',
-                            like: 1,
-                            isReply: false
-                        }
-                    ]
-                }
-            ],
-            index: '' // 当前索引
-        };
-    },
-    computed: {},
-    created() {},
-    mounted() {
-        this.handleData();
-    },
-    watch: {},
-    methods: {}
+  components: {
+    EditDiv
+  },
+  props: {},
+  data() {
+    return {
+      maxlength: 200, // 最大输入字数
+      btnText: '回复', // 评论按钮文字
+      value: '', // 输入值
+      list: [
+        {
+          id: 'AA001',
+          head: 'https://mirror-gold-cdn.xitu.io/168e09bdb66bcf662a4?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1',
+          title: '',
+          date: '1小时前',
+          downloadNum: 89,
+          integral: 4,
+          content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca --来自百度网盘超级会员V5的分享',
+          childs: [
+            {
+              id: 2,
+              head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
+              name: '阿牛',
+              content: '网络喷子原型？',
+              date: '一天前',
+              like: 0,
+              at: '谋生',
+              isReply: false
+            },
+            {
+              id: 3,
+              head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+              name: '谋生',
+              content: '这不是有手就行？',
+              date: '一周前',
+              like: 1,
+              isReply: false
+            }
+          ]
+        },
+        {
+          id: 'HA883',
+          head: 'https://static.woshipm.com/TTW_USER_R201706_20170602174604_6218.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+          title: 'Springboot+Vue前后端分离实现Excle文件导入并在前端页面回显功能-源码',
+          date: '一周前',
+          downloadNum: 40,
+          integral: 8,
+          content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1K_HmdnsUofe_TnYFpFNdgA 提取码：6098 --来自百度网盘超级会员V5的分享',
+          childs: [
+            {
+              id: 2,
+              head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
+              name: '阿牛',
+              content: '网络喷子原型？',
+              date: '一天前',
+              like: 0,
+              at: '谋生',
+              isReply: false
+            },
+            {
+              id: 3,
+              head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+              name: '谋生',
+              content: '这不是有手就行？',
+              date: '一周前',
+              like: 1,
+              isReply: false
+            }
+          ]
+        },
+        {
+          id: 'Y0089',
+          head: 'https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+          title: '前端开发核心知识进阶',
+          date: '2020-09-22 22:00',
+          downloadNum: 16,
+          integral: 9,
+          content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接:https://pan.baidu.com/s/1a9iL8PTDft8qs6iBm3kZZg 提取码:oa64',
+          childs: [
+            {
+              id: 2,
+              head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
+              name: '阿牛',
+              content: '网络喷子原型？',
+              date: '一天前',
+              like: 0,
+              at: '谋生',
+              isReply: false
+            },
+            {
+              id: 3,
+              head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+              name: '谋生',
+              content: '这不是有手就行？',
+              date: '一周前',
+              like: 1,
+              isReply: false
+            }
+          ]
+        }
+      ],
+      index: '' // 当前索引
+    };
+  },
+  computed: {},
+  created() {},
+  mounted() {},
+  watch: {},
+  methods: {
+    // onMaxNum(e) {
+    //   console.log(e);
+    // },
+
+    onSubmit() {}
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .aside-left {
-    width: 680px;
-    transition: ease-in-out 0.5s;
+  width: 680px;
+  transition: ease-in-out 0.5s;
 
-    .list {
-        box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
+  .list {
+    box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
 
-        .item {
-            background-color: #fff;
-            border-radius: 4px;
-            padding: 20px 30px;
+    .item {
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 20px 30px;
+      position: relative;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+
+      .left {
+        margin-right: 12px;
+
+        .avatar-wrap {
+          .avatar {
+            width: 42px;
+            height: 42px;
+            display: block;
+            background: #d0d4d7;
+            border-radius: 100%;
+          }
+        }
+      }
+
+      .right {
+        flex: 1;
+
+        .info-row {
+          margin: 5px 0 8px 0;
+
+          .user-name {
+            font-size: 16px;
+            color: #2e3135;
+            font-weight: 600;
+            margin-right: 10px;
+          }
+
+          .public-time {
+            font-size: 12px;
+            color: #b2b2b2;
+            // line-height: 22px;
+          }
+
+          .top-label {
+            font-size: 12px;
+            color: #b2b2b2;
+            padding: 0 4px;
+            line-height: 16px;
+            text-align: center;
+            display: inline-block;
+            border: 1px solid #bdbdbd;
+            border-radius: 2px;
+            margin-left: 4px;
+            transform: translateY(1px);
+          }
+        }
+
+        .desc_para {
+          font-size: 14px;
+          line-height: 24px;
+          word-wrap: break-word;
+          word-break: break-all;
+        }
+
+        .operations {
+          margin: 10px 0 15px 0;
+
+          .btns {
+            justify-content: flex-end;
+
+            .btn {
+              display: inline-block;
+              cursor: pointer;
+              color: #446586;
+              user-select: none;
+              margin-left: 15px;
+              vertical-align: middle;
+
+              &:hover {
+                color: rgb(74, 144, 226);
+              }
+
+              &:hover .iconfont {
+                color: rgb(74, 144, 226);
+              }
+
+              &:hover .btn-text {
+                text-decoration: underline;
+              }
+
+              &:first-child {
+                margin: 0;
+              }
+
+              .iconfont {
+                color: #446586;
+                font-size: 18px;
+                vertical-align: middle;
+              }
+
+              .btn-text {
+                font-size: 14px;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+
+        .reply-form {
+          margin: 20px 0;
+        }
+
+        .reply-list {
+          position: relative;
+          box-sizing: border-box;
+          background-color: rgba(0, 0, 0, 0.02);
+          border-radius: 4px;
+          padding: 0 20px;
+
+          .reply-item {
             position: relative;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+            border-bottom: 0.5px solid #f0f1f3;
+            padding: 20px 0;
 
             .left {
-                margin-right: 12px;
+              margin-right: 8px;
 
-                .avatar-wrap {
-                    .avatar {
-                        width: 42px;
-                        height: 42px;
-                        display: block;
-                        background: #d0d4d7;
-                        border-radius: 100%;
-                    }
+              .avatar-wrap {
+                .avatar {
+                  width: 32px;
+                  height: 32px;
+                  display: block;
+                  background: #d0d4d7;
+                  border-radius: 100%;
                 }
+              }
             }
 
             .right {
-                flex: 1;
+              .info-row {
+                margin: 5px 0 6px 0;
 
-                .info-row {
-                    margin: 5px 0 8px 0;
-
-                    .user-name {
-                        font-size: 16px;
-                        color: #2e3135;
-                        font-weight: 600;
-                        margin-right: 10px;
-                    }
-
-                    .public-time {
-                        font-size: 12px;
-                        color: #b2b2b2;
-                        // line-height: 22px;
-                    }
-
-                    .top-label {
-                        font-size: 12px;
-                        color: #b2b2b2;
-                        padding: 0 4px;
-                        line-height: 16px;
-                        text-align: center;
-                        display: inline-block;
-                        border: 1px solid #bdbdbd;
-                        border-radius: 2px;
-                        margin-left: 4px;
-                        transform: translateY(1px);
-                    }
+                .reply-name {
+                  font-size: 14px;
+                  color: #2e3135;
+                  margin-right: 10px;
                 }
-
-                .desc_para {
-                    font-size: 14px;
-                    line-height: 24px;
-                    word-wrap: break-word;
-                    word-break: break-all;
-                }
-
-                .operations {
-                    margin: 10px 0 15px 0;
-
-                    .btns {
-                        justify-content: flex-end;
-
-                        .btn {
-                            display: inline-block;
-                            cursor: pointer;
-                            color: #446586;
-                            user-select: none;
-                            margin-left: 15px;
-                            vertical-align: middle;
-
-                            &:hover {
-                                color: rgb(74, 144, 226);
-                            }
-
-                            &:hover .iconfont {
-                                color: rgb(74, 144, 226);
-                            }
-
-                            &:hover .btn-text {
-                                text-decoration: underline;
-                            }
-
-                            &:first-child {
-                                margin: 0;
-                            }
-
-                            .iconfont {
-                                color: #446586;
-                                font-size: 18px;
-                                vertical-align: middle;
-                            }
-
-                            .btn-text {
-                                font-size: 14px;
-                                vertical-align: middle;
-                            }
-                        }
-                    }
-                }
-
-                .reply-form {
-                    margin: 20px 0;
-                }
-
-                .reply-list {
-                    position: relative;
-                    box-sizing: border-box;
-                    background-color: rgba(0, 0, 0, 0.02);
-                    border-radius: 4px;
-                    padding: 0 20px;
-
-                    .reply-item {
-                        position: relative;
-                        border-bottom: 0.5px solid #f0f1f3;
-                        padding: 20px 0;
-
-                        .left {
-                            margin-right: 8px;
-
-                            .avatar-wrap {
-                                .avatar {
-                                    width: 32px;
-                                    height: 32px;
-                                    display: block;
-                                    background: #d0d4d7;
-                                    border-radius: 100%;
-                                }
-                            }
-                        }
-
-                        .right {
-                            .info-row {
-                                margin: 5px 0 6px 0;
-
-                                .reply-name {
-                                    font-size: 14px;
-                                    color: #2e3135;
-                                    margin-right: 10px;
-                                }
-                            }
-                        }
-
-                        .operations {
-                            margin: 8px 0 0 0;
-                        }
-
-                        &:last-child {
-                            border: none;
-                        }
-                    }
-                }
+              }
             }
+
+            .operations {
+              margin: 8px 0 0 0;
+            }
+
+            &:last-child {
+              border: none;
+            }
+          }
         }
+      }
     }
+  }
 }
 </style>
