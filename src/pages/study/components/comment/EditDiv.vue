@@ -92,18 +92,19 @@ export default {
     align-items: flex-end;
 
     & .comment-input.no-reference {
-        padding: 0 0 0 17px;
+        padding: 0 0 0 15px;
     }
 
     & .comment-input {
         position: relative;
         flex-grow: 1;
         border: 1px solid #d8dedf;
-        border-radius: 6px;
+        border-radius: 4px;
         transition: all 0.3s ease;
+        max-width: 571px;
     }
     & .comment-input[focus] {
-        border-color: #2c74e6;
+        border-color: #409eff;
     }
 
     & .comment-textarea {
@@ -119,7 +120,7 @@ export default {
         bottom: 1px;
         z-index: 10;
         width: 15px;
-        border-radius: 6px;
+        border-radius: 4px;
     }
 
     .textarea {
@@ -129,7 +130,7 @@ export default {
         width: 100%;
         min-height: 36px;
         max-height: 100px;
-        border-radius: 6px;
+        border-radius: 4px;
         line-height: 24px;
         font-size: 16px;
         font-weight: 400;
@@ -160,7 +161,7 @@ export default {
             left: 0px;
             width: 83px;
             height: 37px;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
         .Button_button_3onsJ {
@@ -180,14 +181,14 @@ export default {
         }
 
         [plbtn-color='blue'] {
-            background: #2c74e6;
-            border: 1px solid #2c74e6;
+            background: #409eff;
+            border: 1px solid #409eff;
             box-shadow: none;
             color: #fff;
         }
 
         [plbtn-color='blue'][pl-button][disabled='disabled'] {
-            background: #2c74e6;
+            background: #409eff;
             opacity: 0.6;
         }
 
