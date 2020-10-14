@@ -70,8 +70,20 @@
             </div>
             <div class="comment-form flex-s-b">
                 <div class="func_icon">
-                    <div class="btn">
+                    <div class="btn emoji-icon">
                         <i class="iconfont icon-biaoqing1"></i>
+                        <div class="emoji-selector">
+                            <div class="triangle"></div>
+                            <div class="emoji-picker">
+                                <div class="emojis">
+                                    <ul class="category">
+                                        <li class="item" @click="getEmo(index)" v-for="(item, index) in faceList" :key="index">
+                                            <span>{{ item }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="btn">
                         <i class="iconfont icon-tupian"></i>
@@ -92,6 +104,7 @@
 </template>
 
 <script>
+const appData = require('../../../utils/emoji.json');
 export default {
     props: {
         // placeholderText
@@ -120,7 +133,8 @@ export default {
             content: '',
             mTextarea: null,
             isFocus: false,
-            maxNum: ''
+            maxNum: '',
+            faceList: []
         };
     },
     watch: {
@@ -134,7 +148,123 @@ export default {
         }
     },
     computed: {},
-    created() {},
+    created() {
+        // 😃,
+        // 😘,
+        // 😂,
+        // 😳,
+        // 😍,
+        // 👏,
+        // 👍,
+        // 👎,
+        // 😁,
+        // 😉,
+        // 😠,
+        // 😞,
+        // 😥,
+        // 😭,
+        // 😝,
+        // 😡,
+        // ❤,
+        // 💔,
+        // 😣,
+        // 😔,
+        // 😄,
+        // 😷,
+        // 😚,
+        // 😓,
+        // 😊,
+        // 😢,
+        // 😜,
+        // 😨,
+        // 😰,
+        // 😲,
+        // 😏,
+        // 😱,
+        // 😪,
+        // 😖,
+        // 😌,
+        // 😒,
+        // 👻,
+        // 🎅,
+        // 👧,
+        // 👦,
+        // 👩,
+        // 👨,
+        // 🐶,
+        // 🐱,
+        // 👊,
+        // ✊,
+        // ✌,
+        // 💪,
+        // 👆,
+        // 👇,
+        // 👉,
+        // 👈,
+        // 👌,
+        // 💩,
+
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f603.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f618.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f602.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f633.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60d.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44f.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44d.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44e.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f601.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f609.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f620.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61e.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f625.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f62d.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61d.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f621.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/2764.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f494.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f623.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f614.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f604.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f637.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61a.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f613.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60a.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f622.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61c.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f628.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f630.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f632.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60f.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f631.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f62a.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f616.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60c.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f612.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f47b.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f385.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f467.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f466.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f469.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f468.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f436.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f431.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44a.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/270a.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/270c.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f4aa.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f446.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f447.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f449.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f448.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44c.svg
+        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f4a9.svg
+        console.log(appData);
+        for (let i in appData) {
+            this.faceList.push(appData[i].value);
+        }
+
+        console.log(this.entitiesToUtf16(this.utf16toEntities('😇')));
+    },
     mounted() {
         this.$nextTick(() => {
             this.mTextarea = this.$refs.mTextarea;
@@ -146,6 +276,27 @@ export default {
     },
     watch: {},
     methods: {
+        entitiesToUtf16(str) {
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                let H = Math.floor((dec - 0x10000) / 0x400) + 0xd800;
+                let L = (Math.floor(dec - 0x10000) % 0x400) + 0xdc00;
+                return String.fromCharCode(H, L);
+            });
+        },
+        utf16toEntities(str) {
+            var patt = /[\ud800-\udbff][\udc00-\udfff]/g; // 检测utf16字符正则
+            return str.replace(patt, function(char) {
+                var H, L, code;
+                if (char.length === 2) {
+                    H = char.charCodeAt(0); // 取出高位
+                    L = char.charCodeAt(1); // 取出低位
+                    code = (H - 0xd800) * 0x400 + 0x10000 + L - 0xdc00; // 转换算法
+                    return '&#' + code + ';';
+                } else {
+                    return char;
+                }
+            });
+        },
         // 输入框监听事件
         domInput(event) {
             let innerText = this.mTextarea.innerText;
@@ -219,10 +370,6 @@ export default {
             margin-left: 8px;
             vertical-align: middle;
 
-            &:hover {
-                color: rgb(74, 144, 226);
-            }
-
             &:hover .iconfont {
                 color: rgb(74, 144, 226);
             }
@@ -248,6 +395,55 @@ export default {
 
             .warn {
                 color: red;
+            }
+        }
+
+        .emoji-icon {
+            position: relative;
+
+            .emoji-selector {
+                position: absolute;
+                top: 40px;
+                z-index: 1;
+                bottom: 0;
+                width: 280px;
+                height: 230px;
+                border-radius: 3px;
+                background-color: #fff;
+                box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.16);
+
+                .triangle {
+                    position: absolute;
+                    top: -7px;
+                    left: 20px;
+                    width: 0;
+                    height: 0;
+                    transform: translate(-50%, -50%);
+                    border: 8px solid transparent;
+                    border-bottom-color: #fff;
+                    z-index: 100;
+                }
+
+                .emoji-picker {
+                    .emojis {
+                        .category {
+                            max-width: 280px;
+                            max-height: 230px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: flex-start;
+                            overflow-y: scroll;
+                            padding: 10px;
+
+                            .item {
+                                font-size: 20px;
+                                padding: 5px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
