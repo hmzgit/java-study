@@ -10,6 +10,7 @@
                         @focus="isFocus = true"
                         @blur="isFocus = false"
                         @input="domInput"
+                        @keydown="onEnter"
                         ref="mTextarea"
                         contenteditable="true"
                         spellcheck="false"
@@ -18,52 +19,14 @@
                         :class="{ empty: !content }"
                     ></div>
                     <div class="pic-row flex">
-                        <div class="upload-column">
-                            <img
-                                class="upImg"
-                                src="https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!"
-                                alt="回答图片"
-                            />
-                            <span class="close">
-                                <i class="iconfont icon-close"></i>
-                            </span>
-                        </div>
-                        <div class="upload-column">
-                            <img
-                                class="upImg"
-                                src="https://static.woshipm.com/TTW_USER_R201706_20170602174604_6218.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!"
-                                alt="回答图片"
-                            />
-                            <span class="close">
-                                <i class="iconfont icon-close"></i>
-                            </span>
-                        </div>
-                        <div class="upload-column">
-                            <img class="upImg" src="//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200" alt="回答图片" />
-                            <span class="close">
-                                <i class="iconfont icon-close"></i>
-                            </span>
-                        </div>
-                        <div class="upload-column">
-                            <img class="upImg" src="https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!" alt="回答图片" />
-                            <span class="close">
-                                <i class="iconfont icon-close"></i>
-                            </span>
-                        </div>
-                        <div class="upload-column">
-                            <img class="upImg" src="//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200" alt="回答图片" />
-                            <span class="close">
-                                <i class="iconfont icon-close"></i>
-                            </span>
-                        </div>
-                        <div class="upload-column">
-                            <img class="upImg" src="https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!" alt="回答图片" />
+                        <div class="upload-column" v-for="(item, index) in uploadList" :key="index">
+                            <img class="upImg" :src="item" alt="回答图片" />
                             <span class="close">
                                 <i class="iconfont icon-close"></i>
                             </span>
                         </div>
                         <div class="max-length">
-                            <span>(6/6)</span>
+                            <span>({{ uploadList.length }}/6)</span>
                         </div>
                     </div>
                 </div>
@@ -77,8 +40,8 @@
                             <div class="emoji-picker">
                                 <div class="emojis">
                                     <ul class="category">
-                                        <li class="item" @click="getEmo(index)" v-for="(item, index) in faceList" :key="index">
-                                            <span>{{ item }}</span>
+                                        <li class="item" @click="getEmo(item)" v-for="(item, index) in emojis" :key="index">
+                                            <img class="emoji-img" :src="item.svg" :alt="item.emoji" />
                                         </li>
                                     </ul>
                                 </div>
@@ -134,7 +97,15 @@ export default {
             mTextarea: null,
             isFocus: false,
             maxNum: '',
-            faceList: []
+            emojis: [],
+            uploadList: [
+                'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                'https://static.woshipm.com/TTW_USER_R201706_20170602174604_6218.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
+                'https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
+                '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
+                'https://static.woshipm.com/WX_U_202010_20201009070042_2416.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!'
+            ]
         };
     },
     watch: {
@@ -149,126 +120,17 @@ export default {
     },
     computed: {},
     created() {
-        // 😃,
-        // 😘,
-        // 😂,
-        // 😳,
-        // 😍,
-        // 👏,
-        // 👍,
-        // 👎,
-        // 😁,
-        // 😉,
-        // 😠,
-        // 😞,
-        // 😥,
-        // 😭,
-        // 😝,
-        // 😡,
-        // ❤,
-        // 💔,
-        // 😣,
-        // 😔,
-        // 😄,
-        // 😷,
-        // 😚,
-        // 😓,
-        // 😊,
-        // 😢,
-        // 😜,
-        // 😨,
-        // 😰,
-        // 😲,
-        // 😏,
-        // 😱,
-        // 😪,
-        // 😖,
-        // 😌,
-        // 😒,
-        // 👻,
-        // 🎅,
-        // 👧,
-        // 👦,
-        // 👩,
-        // 👨,
-        // 🐶,
-        // 🐱,
-        // 👊,
-        // ✊,
-        // ✌,
-        // 💪,
-        // 👆,
-        // 👇,
-        // 👉,
-        // 👈,
-        // 👌,
-        // 💩,
-
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f603.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f618.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f602.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f633.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60d.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44f.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44d.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44e.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f601.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f609.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f620.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61e.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f625.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f62d.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61d.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f621.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/2764.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f494.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f623.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f614.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f604.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f637.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61a.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f613.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60a.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f622.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f61c.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f628.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f630.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f632.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60f.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f631.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f62a.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f616.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f60c.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f612.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f47b.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f385.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f467.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f466.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f469.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f468.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f436.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f431.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44a.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/270a.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/270c.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f4aa.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f446.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f447.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f449.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f448.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f44c.svg
-        // https://gold-cdn.xitu.io/asset/twemoji/2.6.0/svg/1f4a9.svg
-        console.log(appData);
         for (let i in appData) {
-            this.faceList.push(appData[i].value);
+            this.emojis.push({
+                emoji: appData[i].value,
+                svg: appData[i].cdn
+            });
         }
-
-        console.log(this.entitiesToUtf16(this.utf16toEntities('😇')));
     },
     mounted() {
         this.$nextTick(() => {
-            this.mTextarea = this.$refs.mTextarea;
             // 回显
+            this.mTextarea = this.$refs.mTextarea;
             this.mTextarea.innerText = this.value;
             this.content = this.mTextarea.innerText;
             this.maxNum = this.maxlength;
@@ -276,44 +138,72 @@ export default {
     },
     watch: {},
     methods: {
-        entitiesToUtf16(str) {
-            return str.replace(/&#(\d+);/g, function(match, dec) {
-                let H = Math.floor((dec - 0x10000) / 0x400) + 0xd800;
-                let L = (Math.floor(dec - 0x10000) % 0x400) + 0xdc00;
-                return String.fromCharCode(H, L);
-            });
-        },
-        utf16toEntities(str) {
-            var patt = /[\ud800-\udbff][\udc00-\udfff]/g; // 检测utf16字符正则
-            return str.replace(patt, function(char) {
-                var H, L, code;
-                if (char.length === 2) {
-                    H = char.charCodeAt(0); // 取出高位
-                    L = char.charCodeAt(1); // 取出低位
-                    code = (H - 0xd800) * 0x400 + 0x10000 + L - 0xdc00; // 转换算法
-                    return '&#' + code + ';';
-                } else {
-                    return char;
-                }
-            });
-        },
         // 输入框监听事件
         domInput(event) {
             let innerText = this.mTextarea.innerText;
+            console.log(this.mTextarea.innerHTML);
             // 限制输入
             if (innerText.length >= this.maxlength) {
-                console.log(innerText.length);
-                // innerText = innerText.substring(0, this.maxlength);
                 this.mTextarea.innerText = innerText;
                 this.content = innerText;
             }
 
-            // 值
-            this.content = innerText;
-            // 剩余字符串
+            // 赋值最新值
+            this.setData();
+        },
+
+        // 赋值最新值
+        setData() {
+            // 最新值
+            this.content = this.getEditValue(this.mTextarea);
+            // 剩余字符串字数
             this.maxNum = this.maxlength - this.content.length;
             // 设置光标到最后
             this.setFocus();
+        },
+
+        // 回车换行事件
+        onEnter(e) {
+            if (e.keyCode === 13) {
+                /*调用光标插入方法，在光标处插入 换行*/
+                this.insertHtmlAtCaret('<br>');
+                return false;
+            }
+        },
+
+        // 插入内容
+        insertHtmlAtCaret(html, isFocus = false) {
+            var sel, range, frag;
+            if (window.getSelection) {
+                // 没获取焦点时点击表情的处理
+                if (isFocus) {
+                    let edit = this.mTextarea;
+                    if (!edit.hasfocus) {
+                        edit.focus();
+                    }
+                }
+                sel = window.getSelection();
+                if (sel.getRangeAt && sel.rangeCount) {
+                    range = sel.getRangeAt(0);
+                    range.deleteContents();
+                    var el = document.createElement('div');
+                    el.innerHTML = html;
+                    frag = document.createDocumentFragment();
+                    var node;
+                    var lastNode;
+                    while ((node = el.firstChild)) {
+                        lastNode = frag.appendChild(node);
+                    }
+                    range.insertNode(frag);
+                    if (lastNode) {
+                        range = range.cloneRange();
+                        range.setStartAfter(lastNode);
+                        range.collapse(true);
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                }
+            }
         },
 
         // 设置光标到最后
@@ -326,15 +216,55 @@ export default {
             selection.addRange(range);
         },
 
+        // 插入表情
+        getEmo(item) {
+            let Img = `<img class="text-emoji" alt="${item.emoji}" src="${item.svg}" />`; // img是要插入的图片表情
+            this.insertHtmlAtCaret(Img, true);
+            // 赋值最新值
+            this.setData();
+        },
+
+        // 获取输入框内容
+        getEditValue(elem) {
+            let res = '';
+            Array.from(elem.childNodes).forEach(child => {
+                if (child.nodeName === '#text') {
+                    res += child.nodeValue;
+                } else if (child.nodeName === 'BR') {
+                    res += '↵';
+                } else if (child.nodeName === 'IMG') {
+                    res += child.alt;
+                } else if (child.nodeName === 'DIV') {
+                    res += this.getEditValue(child);
+                }
+            });
+            return res;
+        },
+
         // 提交评论
         submit() {
-            if (this.content) {
-                this.$emit('submit', this.content);
+            let innerText = this.getEditValue(this.mTextarea);
+            if (innerText) {
+                console.log(innerText);
+                this.$emit('submit', innerText);
             }
         }
     }
 };
 </script>
+
+<style>
+/* 动态添加的元素样式不生效 */
+/* 样式不生效，因为标签里没有属性data-v-33f8ed40 */
+/* style 去掉scoped 属性就好了*/
+.text-emoji {
+    vertical-align: sub;
+    width: 20px;
+    height: 20px;
+    cursor: default;
+    margin: 0 2px;
+}
+</style>
 
 <style scoped lang="scss">
 .comment-form {
@@ -403,7 +333,8 @@ export default {
 
             .emoji-selector {
                 position: absolute;
-                top: 40px;
+                top: 35px;
+                left: -20px;
                 z-index: 1;
                 bottom: 0;
                 width: 280px;
@@ -415,7 +346,7 @@ export default {
                 .triangle {
                     position: absolute;
                     top: -7px;
-                    left: 20px;
+                    left: 30px;
                     width: 0;
                     height: 0;
                     transform: translate(-50%, -50%);
@@ -438,8 +369,18 @@ export default {
 
                             .item {
                                 font-size: 20px;
-                                padding: 5px;
+                                padding: 5px 10px;
                                 cursor: pointer;
+
+                                .emoji-img {
+                                    width: 22px;
+                                    height: 22px;
+                                    display: block;
+
+                                    &:hover {
+                                        transform: scale(1.2);
+                                    }
+                                }
                             }
                         }
                     }
@@ -460,7 +401,7 @@ export default {
         .upload-column {
             width: 68px;
             height: 68px;
-            border-radius: 4px;
+            border-radius: 2px;
             position: relative;
             overflow: hidden;
             margin-right: 6px;
@@ -533,6 +474,7 @@ export default {
         user-select: auto;
         -webkit-user-select: auto;
         border: none;
+        word-break: break-word;
     }
 
     .textarea.empty:after {
