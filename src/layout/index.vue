@@ -1,11 +1,9 @@
 <template>
-    <div>
-        <div class="mian">
-            <header-top />
-            <div class="mian-body">
-                <div class="main-container">
-                    <app-main />
-                </div>
+    <div class="mian">
+        <header-top />
+        <div class="mian-body">
+            <div class="main-container">
+                <app-main />
             </div>
         </div>
     </div>
