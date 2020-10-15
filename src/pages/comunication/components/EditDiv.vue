@@ -166,6 +166,7 @@ export default {
         onEnter(e) {
             if (e.keyCode === 13) {
                 /*调用光标插入方法，在光标处插入 换行*/
+                console.log(123);
                 this.insertHtmlAtCaret('<br>');
                 return false;
             }
