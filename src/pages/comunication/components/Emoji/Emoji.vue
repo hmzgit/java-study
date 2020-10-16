@@ -1,71 +1,109 @@
 <template>
-  <el-popover class="emoji-wrap" placement="bottom-start" width="400" trigger="click">
-    <div class="emotionList">
-      <b v-for="(item,idx) in faceList" :key="idx" class="emotionItem" @click="getEmo(idx)">{{ item }}</b>
+    <div class="emoji-selector">
+        <div class="emoji-picker">
+            <div class="emojis">
+                <ul class="category">
+                    <li class="item" @click="getEmoji(item)" v-for="item in emojis" :key="item.key">
+                        <img class="emoji-img" :src="item.cdn" :alt="item.value" />
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <slot slot="reference"></slot>
-  </el-popover>
 </template>
 
 <script>
-import appData from './emoji.json'
-const changeSelectedText = (textArea, str) => {
-  if (window.getSelection) {
-    // 非IE浏览器
-    // textArea.setRangeText(str)
-    // 在未选中文本的情况下，重新设置光标位置
-    textArea.selectionStart += str.length
-    textArea.focus()
-  } else if (document.selection) {
-    // IE浏览器
-    textArea.focus()
-    // var sel = document.selection.createRange()
-    // sel.text = str
-  }
-}
+const appData = require('./emoji.json');
 export default {
-  name: 'Emoji',
-  props: {
-    textAreaId: {
-      type: String,
-      required: true
+    props: {},
+    data() {
+        return {
+            emojis: []
+        };
+    },
+    created() {
+        for (let i in appData) {
+            this.emojis.push(appData[i]);
+        }
+    },
+    mounted() {},
+    methods: {
+        // 插入表情
+        getEmoji(item) {
+            this.$emit('addEmoji', item);
+        }
     }
-  },
-  data () {
-    return {
-      faceList: appData
-    }
-  },
-  methods: {
-    getEmo (idx) {
-      const textArea = document.getElementById(this.textAreaId)
-      this.$emit('handleEmoji', this.faceList[idx])
-      changeSelectedText(textArea, this.faceList[idx])
-    }
-  }
-}
+};
 </script>
 
-<style>
-/* el-popover是和app同级的，所以scoped的局部属性设置了无效 */
-/* 需要设置全局style */
-.emoji-wrap {
-  height: 200px;
-  width: 400px;
-  overflow: scroll;
-  overflow-x: auto;
-}
-</style>
+<style scoped lang="scss">
+.emoji-selector {
+    position: absolute;
+    top: -245px;
+    left: -20px;
+    bottom: 0;
+    width: 280px;
+    height: 230px;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.16);
+    animation: up 0.3s;
+    z-index: 10;
 
-<style scoped>
-.emotionList {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px;
+    .emoji-picker {
+        .emojis {
+            .category {
+                max-width: 280px;
+                max-height: 230px;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                overflow-y: scroll;
+                padding: 10px;
+
+                .item {
+                    font-size: 20px;
+                    padding: 5px 10px;
+                    cursor: pointer;
+
+                    .emoji-img {
+                        width: 22px;
+                        height: 22px;
+                        display: block;
+
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+            }
+        }
+
+        &::after {
+            border-width: 8px 8px 0 8px;
+            border-color: #fff transparent transparent transparent;
+            position: absolute;
+            bottom: -8px;
+            left: 22px;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+    }
 }
-.emotionItem {
-  width: 10%;
-  font-size: 20px;
-  text-align: center;
+
+@keyframes up {
+    0% {
+        -webkit-transform: translateY(20px);
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 </style>

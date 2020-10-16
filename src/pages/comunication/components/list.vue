@@ -38,15 +38,14 @@
                                     <i class="iconfont icon-dianzan3"></i>
                                     <span class="btn-text">点赞</span>
                                 </div>
-                                <div class="btn">
+                                <div class="btn" @click="showForm(index)">
                                     <i class="iconfont icon-pinglun1"></i>
                                     <span class="btn-text">回答</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="reply-form">
-                            <EditNew></EditNew>
-                            <!-- <edit-div @submit="onSubmit"  v-model="value"  :maxlength="200" :btnText="btnText" placeholderText="讲两句呗..." /> -->
+                        <div class="reply-form" v-if="item.isCommentForm">
+                            <edit-div @submit="onSubmit" v-model="value" :dialogVisible="dialogVisible" :maxlength="200" :btnText="btnText" placeholderText="讲两句呗..." />
                         </div>
                         <div class="reply-list">
                             <div class="reply-item flex" v-for="child in item.childs" :key="child.id">
@@ -89,15 +88,10 @@
 
 <script>
 import EditDiv from './EditDiv';
-import EditNew from './EditNew';
-
-import { disableScroll, openScroll } from '@/utils';
 export default {
     components: {
-        EditDiv,
-        EditNew
+        EditDiv
     },
-    props: {},
     data() {
         return {
             maxlength: 200, // 最大输入字数
@@ -111,28 +105,9 @@ export default {
                     date: '1小时前',
                     downloadNum: 89,
                     integral: 4,
-                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca --来自百度网盘超级会员V5的分享',
-                    childs: [
-                        {
-                            id: 2,
-                            head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
-                            name: '阿牛',
-                            content: '网络喷子原型？',
-                            date: '一天前',
-                            like: 0,
-                            at: '谋生',
-                            isReply: false
-                        },
-                        {
-                            id: 3,
-                            head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                            name: '谋生',
-                            content: '这不是有手就行？',
-                            date: '一周前',
-                            like: 1,
-                            isReply: false
-                        }
-                    ]
+                    isCommentForm: false,
+                    dialogVisible: false,
+                    content: '链接: https://pan.baidu.com/s/1-6EupUOaH6mEKj2kWnL52A  密码: v0ca --来自百度网盘超级会员V5的分享'
                 },
                 {
                     id: 'HA883',
@@ -141,28 +116,9 @@ export default {
                     date: '一周前',
                     downloadNum: 40,
                     integral: 8,
-                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1K_HmdnsUofe_TnYFpFNdgA 提取码：6098 --来自百度网盘超级会员V5的分享',
-                    childs: [
-                        {
-                            id: 2,
-                            head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
-                            name: '阿牛',
-                            content: '网络喷子原型？',
-                            date: '一天前',
-                            like: 0,
-                            at: '谋生',
-                            isReply: false
-                        },
-                        {
-                            id: 3,
-                            head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                            name: '谋生',
-                            content: '这不是有手就行？',
-                            date: '一周前',
-                            like: 1,
-                            isReply: false
-                        }
-                    ]
+                    isCommentForm: false,
+                    dialogVisible: false,
+                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接：https://pan.baidu.com/s/1K_HmdnsUofe_TnYFpFNdgA 提取码：6098 --来自百度网盘超级会员V5的分享'
                 },
                 {
                     id: 'Y0089',
@@ -171,31 +127,12 @@ export default {
                     date: '2020-09-22 22:00',
                     downloadNum: 16,
                     integral: 9,
-                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接:https://pan.baidu.com/s/1a9iL8PTDft8qs6iBm3kZZg 提取码:oa64',
-                    childs: [
-                        {
-                            id: 2,
-                            head: '//static001.geekbang.org/account/avatar/00/0f/f7/6e/04f9a672.jpg?x-oss-process=image/resize,w_200,h_200',
-                            name: '阿牛',
-                            content: '网络喷子原型？',
-                            date: '一天前',
-                            like: 0,
-                            at: '谋生',
-                            isReply: false
-                        },
-                        {
-                            id: 3,
-                            head: 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
-                            name: '谋生',
-                            content: '这不是有手就行？',
-                            date: '一周前',
-                            like: 1,
-                            isReply: false
-                        }
-                    ]
+                    isCommentForm: false,
+                    dialogVisible: false,
+                    content: '复制这段内容后打开百度网盘手机App，操作更方便哦 链接:https://pan.baidu.com/s/1a9iL8PTDft8qs6iBm3kZZg 提取码:oa64'
                 }
             ],
-            index: '' // 当前索引
+            dialogVisible: false
         };
     },
     computed: {},
@@ -203,9 +140,16 @@ export default {
     mounted() {},
     watch: {},
     methods: {
-        // onMaxNum(e) {
-        //   console.log(e);
-        // },
+        showForm(i) {
+            // 只显示一个评论框
+            this.list.forEach((item, index) => {
+                if (index == i) {
+                    item.isCommentForm = !item.isCommentForm;
+                } else {
+                    item.isCommentForm = false;
+                }
+            });
+        },
 
         onSubmit() {}
     }

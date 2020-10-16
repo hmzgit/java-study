@@ -34,19 +34,8 @@
             <div class="comment-form flex-s-b">
                 <div class="func_icon">
                     <div class="btn emoji-icon">
-                        <i class="iconfont icon-biaoqing1"></i>
-                        <div class="emoji-selector">
-                            <div class="triangle"></div>
-                            <div class="emoji-picker">
-                                <div class="emojis">
-                                    <ul class="category">
-                                        <li class="item" @click="getEmo(item)" v-for="(item, index) in emojis" :key="index">
-                                            <img class="emoji-img" :src="item.svg" :alt="item.emoji" />
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <i class="iconfont icon-biaoqing1" @click="showEmoji(index)"></i>
+                        <Emoji v-if="dialogVisible" ref="emoji" @close="closeEmoji" @addEmoji="getEmoji"></Emoji>
                     </div>
                     <div class="btn">
                         <i class="iconfont icon-tupian"></i>
@@ -67,8 +56,11 @@
 </template>
 
 <script>
-const appData = require('../../../utils/emoji.json');
+import Emoji from './Emoji/emoji';
 export default {
+    components: {
+        Emoji
+    },
     props: {
         // placeholderText
         placeholderText: {
@@ -88,6 +80,12 @@ export default {
             default: 99999
         },
 
+        // 是否显示表情框
+        dialogVisible: {
+            type: Boolean,
+            default: false
+        },
+
         // 值
         value: String
     },
@@ -97,7 +95,6 @@ export default {
             mTextarea: null,
             isFocus: false,
             maxNum: '',
-            emojis: [],
             uploadList: [
                 'https://static.woshipm.com/TTW_USER_202004_20200414140658_1283.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
                 'https://static.woshipm.com/TTW_USER_R201706_20170602174604_6218.jpg?imageView2/2/w/80/size-limit/5k!?imageView2/2/w/80/size-limit/5k!',
@@ -119,14 +116,7 @@ export default {
         }
     },
     computed: {},
-    created() {
-        for (let i in appData) {
-            this.emojis.push({
-                emoji: appData[i].value,
-                svg: appData[i].cdn
-            });
-        }
-    },
+    created() {},
     mounted() {
         this.$nextTick(() => {
             // 回显
@@ -136,7 +126,6 @@ export default {
             this.maxNum = this.maxlength;
         });
     },
-    watch: {},
     methods: {
         // 输入框监听事件
         domInput(event) {
@@ -166,7 +155,6 @@ export default {
         onEnter(e) {
             if (e.keyCode === 13) {
                 /*调用光标插入方法，在光标处插入 换行*/
-                console.log(123);
                 this.insertHtmlAtCaret('<br>');
                 return false;
             }
@@ -217,9 +205,14 @@ export default {
             selection.addRange(range);
         },
 
+        // 表情框显示隐藏
+        showEmoji() {
+            this.dialogVisible = !this.dialogVisible;
+        },
+
         // 插入表情
-        getEmo(item) {
-            let Img = `<img class="text-emoji" alt="${item.emoji}" src="${item.svg}" />`; // img是要插入的图片表情
+        getEmoji(item) {
+            let Img = `<img class="text-emoji" alt="${item.value}" src="${item.cdn}" />`; // img是要插入的图片表情
             this.insertHtmlAtCaret(Img, true);
             // 赋值最新值
             this.setData();
@@ -331,62 +324,6 @@ export default {
 
         .emoji-icon {
             position: relative;
-
-            .emoji-selector {
-                position: absolute;
-                top: 35px;
-                left: -20px;
-                z-index: 1;
-                bottom: 0;
-                width: 280px;
-                height: 230px;
-                border-radius: 3px;
-                background-color: #fff;
-                box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.16);
-
-                .triangle {
-                    position: absolute;
-                    top: -7px;
-                    left: 30px;
-                    width: 0;
-                    height: 0;
-                    transform: translate(-50%, -50%);
-                    border: 8px solid transparent;
-                    border-bottom-color: #fff;
-                    z-index: 100;
-                }
-
-                .emoji-picker {
-                    .emojis {
-                        .category {
-                            max-width: 280px;
-                            max-height: 230px;
-                            display: flex;
-                            flex-wrap: wrap;
-                            align-items: center;
-                            justify-content: flex-start;
-                            overflow-y: scroll;
-                            padding: 10px;
-
-                            .item {
-                                font-size: 20px;
-                                padding: 5px 10px;
-                                cursor: pointer;
-
-                                .emoji-img {
-                                    width: 22px;
-                                    height: 22px;
-                                    display: block;
-
-                                    &:hover {
-                                        transform: scale(1.2);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
