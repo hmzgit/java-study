@@ -1,5 +1,6 @@
 <template>
     <aside class="aside-left">
+        <swiper />
         <div class="list">
             <ul class="list-ul">
                 <li class="item flex" v-for="(item, index) in list" :key="item.id">
@@ -88,9 +89,11 @@
 
 <script>
 import EditDiv from './EditDiv';
+import Swiper from './swiper';
 export default {
     components: {
-        EditDiv
+        EditDiv,
+        Swiper
     },
     data() {
         return {
