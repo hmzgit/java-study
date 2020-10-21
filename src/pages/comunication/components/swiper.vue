@@ -1,5 +1,5 @@
 <template>
-    <div id="banner">
+    <div id="banner" class="shadow">
         <el-carousel height="345px">
             <el-carousel-item v-for="item in list" :key="item.url">
                 <div class="image">

@@ -1,9 +1,10 @@
 <template>
     <aside class="aside-left">
         <swiper />
-        <div class="list">
+        <tab-bar />
+        <div class="list shadow">
             <ul class="list-ul">
-                <li class="item flex" v-for="(item, index) in list" :key="item.id">
+                <li class="item flex shadow" v-for="(item, index) in list" :key="item.id">
                     <div class="left">
                         <div class="avatar-wrap">
                             <img :src="item.head" alt="用户头像" class="avatar" />
@@ -90,10 +91,12 @@
 <script>
 import EditDiv from './EditDiv';
 import Swiper from './swiper';
+import TabBar from './TabBar';
 export default {
     components: {
         EditDiv,
-        Swiper
+        Swiper,
+        TabBar
     },
     data() {
         return {
@@ -165,15 +168,12 @@ export default {
     transition: ease-in-out 0.5s;
 
     .list {
-        box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
-
         .item {
             background-color: #fff;
             border-radius: 4px;
             padding: 20px 30px;
             position: relative;
             margin-bottom: 10px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
 
             .left {
                 margin-right: 12px;
