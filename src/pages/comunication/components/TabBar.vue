@@ -3,8 +3,8 @@
         <ul class="nav">
             <li v-for="(item, index) in list" :key="item.title" :class="active == index ? 'active' : ''" @click="changeMenu(index)" class="menu-item">
                 <span class="link">
+                    <svg-icon v-if="index == 2" className="reward" iconClass="reward"></svg-icon>
                     {{ item.title }}
-                    <svg-icon iconClass="reward"></svg-icon>
                 </span>
             </li>
         </ul>
@@ -59,6 +59,10 @@ export default {
         & .menu-item {
             .link {
                 white-space: nowrap;
+
+                .reward {
+                    font-size: 18px;
+                }
             }
         }
 
@@ -77,7 +81,7 @@ export default {
             position: relative;
             margin-right: 30px;
             line-height: 38px;
-            font-size: 14px;
+            font-size: 16px;
             color: #333;
             cursor: pointer;
 
