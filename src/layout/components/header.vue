@@ -54,10 +54,6 @@ export default {
                     title: '学习圈子',
                     link: '/comunication'
                 },
-                // {
-                //     title: ' 组队学习',
-                //     link: '/feedback'
-                // },
                 {
                     title: '关于我们',
                     link: '/about'

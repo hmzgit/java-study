@@ -21,7 +21,7 @@
                 </div>
                 <div class="bg-body-item flex-direction">
                     <p class="bg-item-title">粉丝</p>
-                    <p class="bg-item-desc">999</p>
+                    <p class="bg-item-desc">999+</p>
                 </div>
             </div>
             <div class="panel-blog-foot flex-s-b">
