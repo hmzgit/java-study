@@ -295,7 +295,7 @@ export default {
             vertical-align: middle;
 
             &:hover .iconfont {
-                color: rgb(74, 144, 226);
+                color: $main-col;
             }
 
             &:hover .btn-text {

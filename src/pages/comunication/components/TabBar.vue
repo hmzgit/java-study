@@ -114,7 +114,7 @@ export default {
     .btn {
         width: 80px;
         height: 30px;
-        background-color: rgb(74, 144, 226);
+        background-color: $main-col;
         color: #fff;
         font-size: 14px;
         border-radius: 4px;

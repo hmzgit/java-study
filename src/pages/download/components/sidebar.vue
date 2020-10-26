@@ -98,7 +98,7 @@ export default {
 
             .icon-shangchuan {
                 font-size: 16px;
-                color: rgb(74, 144, 226);
+                color: $main-col;
                 margin-right: 10px;
             }
 
@@ -136,7 +136,7 @@ export default {
                     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
                     &:focus {
-                        border: 1px solid rgb(74, 144, 226);
+                        border: 1px solid $main-col;
                     }
                 }
 

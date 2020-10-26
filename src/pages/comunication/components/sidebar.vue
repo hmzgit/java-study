@@ -1,28 +1,35 @@
 <template>
     <aside class="aside-right">
-        <div class="hot-block">
-            <div class="hot-t flex-s-b">
-                <span class="flex-align">
-                    <i class="iconfont icon-shangchuan"></i>
-                    <em>上传资料</em>
-                </span>
-                <span>
-                    <i @click="handleAgreement" class="iconfont icon-wenhao"></i>
-                </span>
-            </div>
-            <div class="hot-m">
-                <div class="wrap flex-align">
-                    <label class="label">资料名称:</label>
-                    <input spellcheck="false" autocomplete="off" type="text" placeholder="请输入资料名称" class="data-name" />
+        <div class="public-box aside-shadow">
+            <div class="panel-blog-head flex-align">
+                <div class="blog-head">
+                    <img src="https://wx.qlogo.cn/mmhead/BfRL3E0G1pejfUQGFGFoD6IPnYibkJGzOH8CLDibaOJTDaV1ekW6Uxibw/0" alt="用户头像" class="avatar" />
                 </div>
-                <div class="wrap textarea  flex-align">
-                    <label class="label">分享地址:</label>
-                    <textarea spellcheck="false" autocomplete="off" placeholder="请粘贴分享地址" class="share-address"></textarea>
+                <div class="blog-info">
+                    <p class="bg-name ellipsis">fend</p>
+                    <p class="bg-desc ellipsis">互联网摸鱼精英</p>
                 </div>
             </div>
-            <div class="hot-b">我要上传</div>
+            <div class="panel-blog-body flex-s-b">
+                <div class="bg-body-item flex-direction">
+                    <p class="bg-item-title">我的提问</p>
+                    <p class="bg-item-desc">8</p>
+                </div>
+                <div class="bg-body-item flex-direction">
+                    <p class="bg-item-title">回答</p>
+                    <p class="bg-item-desc">88</p>
+                </div>
+                <div class="bg-body-item flex-direction">
+                    <p class="bg-item-title">粉丝</p>
+                    <p class="bg-item-desc">999</p>
+                </div>
+            </div>
+            <div class="panel-blog-foot flex-s-b">
+                <span class="bg-foot-item">我的关注</span>
+                <span class="bg-foot-item">我的收藏</span>
+            </div>
         </div>
-        <div class="hot-block">
+        <div class="hot-block aside-shadow">
             <div class="hot-m">
                 <div class="customer">
                     <div class="img-wrap">
@@ -78,10 +85,117 @@ export default {
     width: 300px;
     margin-left: 20px;
 
+    .public-box {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 4px;
+        color: rgba(0, 0, 0, 0.9);
+
+        .panel-blog-head {
+            cursor: pointer;
+
+            .blog-head {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+
+                .avatar {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                }
+            }
+
+            .blog-info {
+                width: 200px;
+
+                .bg-name {
+                    font-size: 16px;
+                    display: inline-block;
+                    font-weight: 500;
+                    color: #2c2c2c;
+                    max-width: 200px;
+                }
+
+                .bg-desc {
+                    color: #999;
+                    font-size: 12px;
+                    line-height: 1.5;
+                }
+            }
+        }
+
+        .panel-blog-body {
+            margin-top: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ebedf0;
+            cursor: pointer;
+
+            .bg-body-item {
+                width: 70px;
+                overflow: hidden;
+
+                .bg-item-title,
+                .bg-item-desc {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .bg-item-title {
+                    position: relative;
+                    font-size: 12px;
+                    color: #999;
+                }
+
+                .bg-item-desc {
+                    font-size: 20px;
+                    color: #333;
+                    opacity: 0.9;
+                    line-height: 1.6;
+                }
+
+                &:hover {
+                    .bg-item-title,
+                    .bg-item-desc {
+                        color: $main-col;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .panel-blog-foot {
+            position: relative;
+            margin-top: 15px;
+            cursor: pointer;
+
+            .bg-foot-item {
+                padding: 0 15px;
+                font-size: 14px;
+                color: #333;
+                opacity: 0.9;
+
+                &:hover {
+                    color: $main-col;
+                    opacity: 1;
+                }
+            }
+
+            &:after {
+                content: ' ';
+                position: absolute;
+                left: 50%;
+                display: block;
+                height: 18px;
+                width: 1px;
+                background-color: #ebedf0;
+            }
+        }
+    }
+
     .hot-block {
         background-color: #fff;
-        margin-bottom: 20px;
-        box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
         border-radius: 4px;
 
         .hot-t {
@@ -95,7 +209,7 @@ export default {
 
             .icon-shangchuan {
                 font-size: 16px;
-                color: rgb(74, 144, 226);
+                color: $main-col;
                 margin-right: 10px;
             }
 
@@ -133,7 +247,7 @@ export default {
                     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 
                     &:focus {
-                        border: 1px solid rgb(74, 144, 226);
+                        border: 1px solid $main-col;
                     }
                 }
 

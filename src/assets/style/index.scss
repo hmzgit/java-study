@@ -1,6 +1,6 @@
-// @import "reset";
-@import './reset.scss';
-@import 'common';
+@import 'reset';
+
+// 弹性布局
 
 .flex {
     display: flex;
@@ -28,6 +28,14 @@
     align-items: center;
 }
 
+.flex-direction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// 清除浮动
+
 .clearfix:after,
 .clearfix:before {
     content: '';
@@ -35,9 +43,35 @@
     clear: both;
 }
 
+// 阴影
+
 .shadow {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
+
+.aside-shadow {
+    box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
+}
+
+// 文本溢出 一行
+.ellipsis {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ellipsis-2 {
+    overflow: hidden;
+    word-break: break-all;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+// 滚动条样式
 
 ::-webkit-scrollbar-track-piece {
     -webkit-border-radius: 0;

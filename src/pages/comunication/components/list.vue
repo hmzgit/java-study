@@ -244,11 +244,11 @@ export default {
                             vertical-align: middle;
 
                             &:hover {
-                                color: rgb(74, 144, 226);
+                                color: $main-col;
                             }
 
                             &:hover .iconfont {
-                                color: rgb(74, 144, 226);
+                                color: $main-col;
                             }
 
                             &:hover .btn-text {

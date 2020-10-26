@@ -94,7 +94,7 @@ export default {
                 cursor: pointer;
 
                 &:hover {
-                    color: rgb(74, 144, 226);
+                    color: $main-col;
                 }
             }
 
@@ -109,7 +109,7 @@ export default {
         .agreement-btn {
             display: block;
             margin-top: 20px;
-            background-color: rgb(74, 144, 226);
+            background-color: $main-col;
             height: 32px;
             line-height: 32px;
             width: 140px;
