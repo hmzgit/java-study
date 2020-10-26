@@ -8,10 +8,10 @@
                 </li>
                 <li class="menu-item personal-info">
                     <div class="left">
-                        <img class="head" src="https://static.woshipm.com/TTW_USER_202010_20201009200405_8295.jpg?imageView2/2/w/200/size-limit/5k!" alt="" />
+                        <img class="head" src="http://139.159.147.237/images/xuxiaofei.jpeg" alt="" />
                     </div>
                     <div class="right">
-                        <p class="title">🐟</p>
+                        <p class="title">曾阿牛🐂</p>
                         <p class="level">
                             <span>初学者</span>
                             <span>|</span>
@@ -54,10 +54,10 @@ export default {
                     title: '学习圈子',
                     link: '/comunication'
                 },
-                {
-                    title: ' 组队学习',
-                    link: '/feedback'
-                },
+                // {
+                //     title: ' 组队学习',
+                //     link: '/feedback'
+                // },
                 {
                     title: '关于我们',
                     link: '/about'

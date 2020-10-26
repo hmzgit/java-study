@@ -3,10 +3,10 @@
         <div class="public-box aside-shadow">
             <div class="panel-blog-head flex-align">
                 <div class="blog-head">
-                    <img src="https://wx.qlogo.cn/mmhead/BfRL3E0G1pejfUQGFGFoD6IPnYibkJGzOH8CLDibaOJTDaV1ekW6Uxibw/0" alt="用户头像" class="avatar" />
+                    <img src="http://139.159.147.237/images/xuxiaofei.jpeg" alt="用户头像" class="avatar" />
                 </div>
                 <div class="blog-info">
-                    <p class="bg-name ellipsis">fend</p>
+                    <p class="bg-name ellipsis">曾阿牛🐂</p>
                     <p class="bg-desc ellipsis">互联网摸鱼精英</p>
                 </div>
             </div>
