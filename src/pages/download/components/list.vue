@@ -189,7 +189,6 @@ export default {
     transition: ease-in-out 0.5s;
     background-color: #fff;
     border-radius: 4px;
-    box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
 
     .search-block {
         height: 70px;
@@ -197,7 +196,6 @@ export default {
 
     .download-list {
         border-radius: 4px 4px 0px 0px;
-        box-shadow: 0px 3px 10px 0px rgba(153, 153, 153, 0.1);
 
         .download-item {
             border-top: 1px solid #f2f2f2;

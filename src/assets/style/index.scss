@@ -17,6 +17,7 @@
     justify-content: center;
 }
 
+
 .font-v-a {
     display: inline-block;
     vertical-align: middle;
@@ -32,6 +33,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.flex-c-direction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 // 清除浮动
